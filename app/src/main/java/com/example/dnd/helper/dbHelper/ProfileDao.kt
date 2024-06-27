@@ -10,13 +10,15 @@ import com.example.dnd.model.dbmodel.ProfileModel
 @Dao
 interface ProfileDao {
 
-    @Insert
-    suspend  fun insertProfile(taskItem: ProfileModel)
+    @Insert(entity = ProfileModel::class)
+    suspend fun insertProfile(taskItem: ProfileModel)
 
     @Query("SELECT * FROM profiles ORDER BY id DESC")
     suspend fun getAllProfiles(): List<ProfileModel>
+
     @Delete
     suspend fun deleteProfile(id: ProfileModel)
+
     @Update
     suspend fun updateProfile(taskItem: ProfileModel)
 }
